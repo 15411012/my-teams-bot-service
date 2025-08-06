@@ -1,0 +1,5 @@
+aiohttp
+openai
+botbuilder-core
+botbuilder-integration-aiohttp>=4.15.0
+flask
