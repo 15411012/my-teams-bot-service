@@ -24,7 +24,7 @@ logging.basicConfig(
 CONFIG = DefaultConfig()
 print("MICROSOFT_APP_ID =", CONFIG.APP_ID)
 print("MICROSOFT_APP_PASSWORD =", CONFIG.APP_PASSWORD)
-print("MICROSOFT_APP_TENANT_ID =", CONFIG.APP_TENANTID)
+print("MICROSOFT_APP_TENANT_ID =", CONFIG.APP_TENANT_ID)
 # Create adapter
 ADAPTER = CloudAdapter(ConfigurationBotFrameworkAuthentication(CONFIG))
 
@@ -87,6 +87,10 @@ APP.router.add_get("/ping", ping)
 
 if __name__ == "__main__":
     try:
-        web.run_app(APP, port=int(CONFIG.PORT))
+        port = int(CONFIG.PORT)
+        logging.info(f"Starting app on port {port}")
+        web.run_app(APP, host="0.0.0.0", port=port)
     except Exception as error:
-        raise error
+        logging.exception("App failed to start")
+        raise
+

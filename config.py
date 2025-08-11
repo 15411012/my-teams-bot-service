@@ -5,10 +5,10 @@ load_dotenv()
 class DefaultConfig:
 
 
-    PORT = os.environ.get("PORT")
+    PORT = os.environ.get("PORT", 8000)
     APP_ID = os.environ.get("MICROSOFT_APP_ID")
     APP_PASSWORD = os.environ.get("MICROSOFT_APP_PASSWORD")
-    APP_TENANTID = os.environ.get("MICROSOFT_APP_TENANT_ID")
+    APP_TENANT_ID = os.environ.get("MICROSOFT_APP_TENANT_ID")
 
     # ====== Azure OpenAI Setup ======
     AZURE_OPENAI_ENDPOINT = os.environ.get("AZURE_OPENAI_ENDPOINT")
