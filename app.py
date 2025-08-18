@@ -51,6 +51,10 @@ ADAPTER.on_turn_error = on_error
 # Message handler
 async def on_message_activity(turn_context: TurnContext):
     user_msg = turn_context.activity.text
+    if not user_msg or not user_msg.strip():
+        logging.warning("Received empty message, skipping response")
+        await turn_context.send_activity("I didn’t get any text message. Please type something.")
+        return
     answer = get_mybot_response(user_msg)
     logging.info(f"Sending response: {answer}")
     await turn_context.send_activity(Activity(type="message", text=answer))
