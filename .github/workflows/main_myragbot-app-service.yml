@@ -54,6 +54,6 @@ jobs:
         with:
           app-name: 'myragbot-app-service'
           slot-name: 'Production'
-          package: .
-          enable-oryx-build: true
+          package: './python-app'   # folder where the artifact was downloaded
           deployment-method: zip
+          enable-oryx-build: false
