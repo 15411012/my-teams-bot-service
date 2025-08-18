@@ -8,7 +8,7 @@ class DefaultConfig:
     PORT = os.environ.get("PORT", 8000)
     APP_ID = os.environ.get("MicrosoftAppId")
     APP_PASSWORD = os.environ.get("MicrosoftAppPassword")
-    APP_TENANT_ID = os.environ.get("MicrosoftAppTenantId")
+    APP_TENANTID = os.environ.get("MicrosoftAppTenantId")
     APP_TYPE = os.environ.get("MicrosoftAppType")
 
     # ====== Azure OpenAI Setup ======

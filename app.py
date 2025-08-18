@@ -24,7 +24,7 @@ logging.basicConfig(
 CONFIG = DefaultConfig()
 print("MICROSOFT_APP_ID =", CONFIG.APP_ID)
 print("MICROSOFT_APP_PASSWORD =", CONFIG.APP_PASSWORD)
-print("MICROSOFT_APP_TENANT_ID =", CONFIG.APP_TENANT_ID)
+print("MICROSOFT_APP_TENANT_ID =", CONFIG.APP_TENANTID)
 print("APP_TYPE =", CONFIG.APP_TYPE)
 # Create adapter
 ADAPTER = CloudAdapter(ConfigurationBotFrameworkAuthentication(CONFIG))
