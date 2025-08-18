@@ -9,18 +9,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'   # Use stable runtime supported by Azure App Service
+          python-version: '3.10'
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      # Upload the whole repo except venv
       - name: Upload artifact for deployment
         uses: actions/upload-artifact@v4
         with:
@@ -32,6 +33,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     needs: build
+    permissions:
+      id-token: write     # 👈 needed for azure/login
+      contents: read
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v4
@@ -51,4 +55,4 @@ jobs:
           app-name: 'myragbot-app-service'
           slot-name: 'Production'
           package: .
-          enable-oryx-build: true   # 👈 This forces Oryx to unpack & build your app
+          enable-oryx-build: true
