@@ -86,6 +86,7 @@ APP.router.add_post("/api/messages", messages)
 
 
 async def ping(request):
+    logging.info(f"test url is working fine")
     return web.Response(text="Bot service is running good!", status=200)
 APP.router.add_get("/ping", ping)
 
