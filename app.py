@@ -25,6 +25,7 @@ CONFIG = DefaultConfig()
 print("MICROSOFT_APP_ID =", CONFIG.APP_ID)
 print("MICROSOFT_APP_PASSWORD =", CONFIG.APP_PASSWORD)
 print("MICROSOFT_APP_TENANT_ID =", CONFIG.APP_TENANT_ID)
+print("APP_TYPE =", CONFIG.APP_TYPE)
 # Create adapter
 ADAPTER = CloudAdapter(ConfigurationBotFrameworkAuthentication(CONFIG))
 
@@ -51,6 +52,7 @@ ADAPTER.on_turn_error = on_error
 # Message handler
 async def on_message_activity(turn_context: TurnContext):
     user_msg = turn_context.activity.text
+    logging.info(f"user input msg: {user_msg}")
     if not user_msg or not user_msg.strip():
         logging.warning("Received empty message, skipping response")
         await turn_context.send_activity("I didn’t get any text message. Please type something.")
