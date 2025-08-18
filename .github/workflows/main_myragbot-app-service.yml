@@ -56,3 +56,4 @@ jobs:
           slot-name: 'Production'
           package: .
           enable-oryx-build: true
+          deployment-method: zip
