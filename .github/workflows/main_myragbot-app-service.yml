@@ -46,3 +46,11 @@ jobs:
       - name: Login to Azure using Service Principal JSON
         uses: azure/login@v2
         with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'myragbot-app-service'   # Your App Service name
+          slot-name: 'Production'
+          package: './python-app'             # Points to the correct folder
