@@ -30,8 +30,10 @@ jobs:
         with:
           name: python-app
           path: |
-            .
+            ./*
             !venv/
+            !.git/
+            !.github/
 
   deploy:
     runs-on: ubuntu-latest
@@ -41,7 +43,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: python-app
-          path: python-app   # Fix: download into a dedicated folder
+          path: .
 
       - name: Login to Azure using Service Principal JSON
         uses: azure/login@v2
@@ -53,4 +55,4 @@ jobs:
         with:
           app-name: 'myragbot-app-service'   # Your App Service name
           slot-name: 'Production'
-          package: './python-app'             # Points to the correct folder
+          package: .
