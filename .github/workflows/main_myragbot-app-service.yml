@@ -42,10 +42,17 @@ jobs:
         with:
           name: python-app
 
+      - name: Login to Azure using Service Principal
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'myragbot-app-service'                    # your App Service name
-          slot-name: 'Production'                              # or your slot
-          package: './python-app'                              # folder of the downloaded artifact
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }} # see note below
+          app-name: 'myragbot-app-service'   # your App Service name
+          slot-name: 'Production'
+          package: './python-app'
