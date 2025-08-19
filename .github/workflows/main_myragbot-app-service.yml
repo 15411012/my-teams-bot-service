@@ -41,15 +41,8 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: python-app
+          path: python-app   # Fix: download into a dedicated folder
 
       - name: Login to Azure using Service Principal JSON
         uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
-      - name: Deploy to Azure Web App
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'myragbot-app-service'   # Your App Service name
-          slot-name: 'Production'
-          package: './python-app'
